@@ -1,7 +1,8 @@
 {
     "name": "Hot Swap",
-    "version": "0.10",
-    "description": "Swap out posts about the 2016 election with more relevant, non-partisan information.",
+    "version": "1.0.5",
+    "description": "Swap out posts about the 2016 election with more relevant, actionable political information.",
+    "homepage_url": "http://SwapItLikeItsHot.co",
     "icons": { "16": "icon16.png",
            "48": "icon48.png",
           "128": "icon128.png" },
@@ -10,6 +11,6 @@
         "css": ["HotStyles.css"],
         "js": ["jquery-1.9.0.min.js", "HotSwap.js"]
     }],
-    "permissions": ["storage"],
+    "permissions": [],
     "manifest_version": 2
 }

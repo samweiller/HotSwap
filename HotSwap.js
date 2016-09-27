@@ -27,15 +27,35 @@ var hotSwap = function(regex) {
                 var theChosenGIF = possibleGIFStrings[randomInt(0, possibleGIFStrings.length)]
 
                 var possibleContent = [
-                    "<p>We think dogs are better than those subtly racist comments your aunt\'s brother\'s second cousin is posting right now.</p>",
+                    "<p>We think dogs are better than debates, anyway.</p>",
                     "<p>Doge for president 2016!</p>",
                     "<p>Want to make a difference? <a href='http://www.rockthevote.com/get-informed/elections/am-i-registered-to-vote/' target='_blank'>Make sure you're registered to vote!</a> If you aren't registered, <a href='https://register2.rockthevote.com/?partner=35445' target='_blank'> register now!</a></p>",
                     "<p>Want some non-partisan political news? <a href='https://ajplus.net/english/' target='_blank'>Check out AJ+</a> for some great content.</p>",
-                    "<p>Was your feed super biased before Hot Swap? Check out <a href='http://www.allsides.com/' target='_blank'>AllSides</a> for a look at what news is coming from the other side.</p>",
+                    "<p>Was your feed super biased before Hot Swap? Check out <a href='http://www.allsides.com/' target='_blank'>AllSides</a> for a look at what news is coming from both sides.</p>",
                     "<p>Did you know 32 of America's 44 presidents had dogs? Martin Van Buren also breifly owned two tiger cubs.</p>",
                     "<p>Teddy Roosevelt had 31 pets during his time as president, including nine dogs, five guinea pigs, two cats, and a small bear.</p>",
-                    "<p>November is about more than just the president. Learn about the rest of your county's ballot on <a href='http://vote-usa.org/' target='_blank'>Vote USA</a>."
+                    "<p>November is about more than just the president. Learn about the rest of your county's ballot on <a href='http://vote-usa.org/' target='_blank'>Vote USA</a>.",
+                    "<p>Just vote. Seriously. It's so easy. Vote.</p>",
+                    "<p>Does filling out a form sound like too much effort? Would you rather register to vote by text message of Facebook Messenger? Then check out <a href='https://www.hello.vote/' target='_blank'>HelloVote</a>, a new chat bot for voter registration.</p>",
+                    "<p>If you vote, I might buy you an ice cream cone one day.</p>",
+                    "<p>It doesn't matter what side of the aisle you're on, your vote in November will make an impact on the world.</p>",
+                    "<p>Are you SURE you're registered to vote? Do us a favor and <a href='https://www.am-i-registered-to-vote.org/' target='_blank'>check again to be sure.</a></p>",
+                    "<p>Learn more about who and what you are voting for at <a href='http://votesmart.org/'>Vote Smart</a>.</p>"
+
                 ]
+
+               //  // NON-WORKING CODE
+               //  if (document.getElementById('theRegistrationFrame')) {
+               //     var pressButton = document.getElementById('theActualButton');
+               //     var theRegButton = document.getElementById('theRegistrationFrame');
+               //     pressButton.onclick = function() {
+               //     thRegButton.setAttribute('display', 'inline')
+               //  }
+               //  }
+
+               // // Content code for above
+               // "<p>Are you sure you're registered to vote at your current address? Make sure with Rock The Vote.</p><button type='button' id='theActualButton'>Check if I Am Registered</button><iframe id='theRegistrationFrame' src='https://www.am-i-registered-to-vote.org/' width=100%' height='1200' marginheight='0' frameborder='0'></iframe>",
+
                 var theContent = possibleContent[randomInt(0, possibleContent.length)]
 
                 if ($(".theGIFdiv_" + theUniqueID)[0]) {} else {
@@ -45,7 +65,7 @@ var hotSwap = function(regex) {
                         // console.log(this.closest("._5jmm").id)
 
                     GIFdiv.setAttribute('class', 'theGIFdiv_' + theUniqueID)
-                    console.log('theGIFdiv_' + theUniqueID)
+                  //   console.log('theGIFdiv_' + theUniqueID)
 
                     story.parent().append(GIFdiv)
 
@@ -66,7 +86,7 @@ var hotSwap = function(regex) {
                     theButton.onclick = function() {
                         $(".theStoryBox_" + theUniqueID).toggle()
                         $(".theGIFdiv_" + theUniqueID).toggle()
-                        console.log(document.getElementById('theButtonID').value)
+                        // console.log(document.getElementById('theButtonID').value)
 
                         if (theButton.innerHTML == "Show me the Post") {
                             theButton.innerHTML = "Hide the Post Again"
@@ -74,7 +94,7 @@ var hotSwap = function(regex) {
                           theButton.innerHTML = "Show me the Post"
                         }
 
-                        console.log('#theGIFdiv_' + theUniqueID)
+                        // console.log('#theGIFdiv_' + theUniqueID)
                     }
                     buttonDiv.appendChild(theButton)
                     story.parent().append(buttonDiv);
@@ -105,7 +125,9 @@ function randomInt(low, high) {
     return Math.floor(Math.random() * (high - low) + low);
 }
 
-var filterTerms = "trump, republican, democrat, hillary, donald, clinton, election, Debbie Wasserman Schultz"
+
+
+var filterTerms = "trump, republican, democrat, hillary, donald, clinton, election, Debbie Wasserman Schultz, Gary Johnson, Jill Stein"
 var regex = makeRegex(filterTerms);
 
 document.addEventListener("DOMNodeInserted", function() {
