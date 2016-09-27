@@ -1,5 +1,14 @@
 var lock = false; // so we don't trigger hotSwap() as we manipulate the dom in hotSwap()
 
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyCUk3DEbNkv_OOvcOpb5dXMOr9Mnt_5K-8",
+    databaseURL: "https://hotswap-14c63.firebaseio.com",
+    storageBucket: "hotswap-14c63.appspot.com"
+};
+firebase.initializeApp(config);
+
+
 var facebookStoryClass = ".userContentWrapper";
 var hotSwap = function(regex) {
     if (lock) {
@@ -44,17 +53,17 @@ var hotSwap = function(regex) {
 
                 ]
 
-               //  // NON-WORKING CODE
-               //  if (document.getElementById('theRegistrationFrame')) {
-               //     var pressButton = document.getElementById('theActualButton');
-               //     var theRegButton = document.getElementById('theRegistrationFrame');
-               //     pressButton.onclick = function() {
-               //     thRegButton.setAttribute('display', 'inline')
-               //  }
-               //  }
+                //  // NON-WORKING CODE
+                //  if (document.getElementById('theRegistrationFrame')) {
+                //     var pressButton = document.getElementById('theActualButton');
+                //     var theRegButton = document.getElementById('theRegistrationFrame');
+                //     pressButton.onclick = function() {
+                //     thRegButton.setAttribute('display', 'inline')
+                //  }
+                //  }
 
-               // // Content code for above
-               // "<p>Are you sure you're registered to vote at your current address? Make sure with Rock The Vote.</p><button type='button' id='theActualButton'>Check if I Am Registered</button><iframe id='theRegistrationFrame' src='https://www.am-i-registered-to-vote.org/' width=100%' height='1200' marginheight='0' frameborder='0'></iframe>",
+                // // Content code for above
+                // "<p>Are you sure you're registered to vote at your current address? Make sure with Rock The Vote.</p><button type='button' id='theActualButton'>Check if I Am Registered</button><iframe id='theRegistrationFrame' src='https://www.am-i-registered-to-vote.org/' width=100%' height='1200' marginheight='0' frameborder='0'></iframe>",
 
                 var theContent = possibleContent[randomInt(0, possibleContent.length)]
 
@@ -65,7 +74,7 @@ var hotSwap = function(regex) {
                         // console.log(this.closest("._5jmm").id)
 
                     GIFdiv.setAttribute('class', 'theGIFdiv_' + theUniqueID)
-                  //   console.log('theGIFdiv_' + theUniqueID)
+                        //   console.log('theGIFdiv_' + theUniqueID)
 
                     story.parent().append(GIFdiv)
 
@@ -83,15 +92,19 @@ var hotSwap = function(regex) {
                     theButton.setAttribute('innerHTML', 'HELLO!')
                     theButton.style.cssText = 'left-margin:250'
 
+                    firebase.database().ref().child('counter').transaction(function(currentRank) {
+                        return currentRank + 1;
+                    });
+
                     theButton.onclick = function() {
                         $(".theStoryBox_" + theUniqueID).toggle()
                         $(".theGIFdiv_" + theUniqueID).toggle()
-                        // console.log(document.getElementById('theButtonID').value)
+                            // console.log(document.getElementById('theButtonID').value)
 
                         if (theButton.innerHTML == "Show me the Post") {
                             theButton.innerHTML = "Hide the Post Again"
                         } else if (theButton.innerHTML == "Hide the Post Again") {
-                          theButton.innerHTML = "Show me the Post"
+                            theButton.innerHTML = "Show me the Post"
                         }
 
                         // console.log('#theGIFdiv_' + theUniqueID)
